@@ -24,7 +24,7 @@ workflow:
   definition: "Transform Adventure Works Ddw data to business entities"
   description: |
     This workflow reads from operational tables and creates
-    clean business entities in the daana_dw schema.
+    clean business entities in the dab schema.
 
   # -------------------------------------------------------------------------
   # Model - Path to your data model file (YAML or JSON)
