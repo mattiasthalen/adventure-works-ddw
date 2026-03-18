@@ -35,3 +35,9 @@ test-output.json
 # Build artifacts
 dist/
 build/
+
+# Worktrees
+.worktrees/
+
+# Seed data CSVs (downloaded at build time)
+db/seed/data/
