@@ -24,7 +24,7 @@ Two PostgreSQL databases, both running locally via Docker:
 
 | Database | Container | Port | Purpose |
 |----------|-----------|------|---------|
-| customerdb | aw-customerdb | 5442 | Source data (Adventure Works) + transformed entities (`daana_dw` schema) |
+| customerdb | aw-customerdb | 5442 | Source data (Adventure Works) + transformed entities (`dab` schema) |
 | internaldb | aw-internaldb | 5444 | Daana metadata and orchestration |
 
 ### Source Data
