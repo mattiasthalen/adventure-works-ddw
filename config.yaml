@@ -1,0 +1,24 @@
+# Daana CLI Configuration
+# ========================
+# This file connects daana-cli to Daana's INTERNAL database (internaldb).
+# This is where Daana stores your models, mappings, and workflows.
+#
+# Your DATA WAREHOUSE databases are configured separately via connection
+# profiles - see connections.yaml in your project directory.
+#
+# For more information: https://docs.daana.dev/configuration
+
+app:
+  # Logging level
+  # Options: trace, debug, info, warn, error, fatal, panic
+  log_level: "info"
+
+  # Database connection for Daana's INTERNAL database
+  # These values match the default docker-compose.yml setup
+  db:
+    host: "localhost"
+    port: 5434
+    user: "dev"
+    password: "devpass"
+    name: "internaldb"
+    sslmode: "disable"

@@ -1,0 +1,37 @@
+# Daana CLI Project - Git Ignore Rules
+
+# Compiled JSON files (auto-generated from YAML)
+*.json
+
+# Backup files (created by merge mapping command)
+*.bak
+
+# Temporary files
+*.tmp
+*.temp
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment and configuration overrides
+.env
+.env.local
+*.local.yaml
+
+# Database data and logs (if running locally)
+data/
+logs/
+*.log
+
+# Coverage and test outputs
+coverage.txt
+test-output.json
+
+# Build artifacts
+dist/
+build/

@@ -1,0 +1,68 @@
+# Docker Compose for Daana Development Environment
+# ==================================================
+# This sets up a complete local Daana development environment with both databases.
+#
+# Two-Database Architecture:
+#   1. customerdb (port 5432): Your data warehouse
+#      * Stores source data (from your operational systems)
+#      * Receives transformed business entities
+#      * BI-ready tables in daana_dw schema
+#      * Configured in connections.yaml
+#
+#   2. internaldb (port 5434): Daana's control plane
+#      * Stores models, mappings, workflows (metadata)
+#      * Orchestrates transformations
+#      * Tracks deployment history
+#      * Configured in ~/.daana/config.yaml
+#
+# Quick Start:
+#   1. docker-compose up -d          # Start both databases
+#   2. daana-cli install             # Install Daana framework (uses config.yaml)
+#   3. Edit model.yaml               # Define your business entities
+#   4. daana-cli check model model.yaml
+#   5. Follow the README.md for next steps
+
+services:
+  # Customer Database (Your Data Warehouse)
+  daana-customer:
+    image: postgres:15
+    container_name: daana-customerdb
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: devpass
+      POSTGRES_DB: customerdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - daana-customer-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dev -d customerdb"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # Daana Internal Database (Metadata & Orchestration)
+  daana-internal:
+    image: postgres:15
+    container_name: daana-internaldb
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: devpass
+      POSTGRES_DB: internaldb
+    ports:
+      - "5434:5432"
+    volumes:
+      - daana-internal-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dev -d internaldb"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  daana-customer-data:
+    driver: local
+  daana-internal-data:
+    driver: local

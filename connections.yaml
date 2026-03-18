@@ -1,0 +1,160 @@
+# ===========================================================================
+# CONNECTION PROFILES - Adventure Works Ddw
+# ===========================================================================
+#
+# Connection profiles define how Daana connects to your data warehouse.
+# This is where your source data and transformed business entities live.
+#
+# Two-Database Architecture:
+#   ~/.daana/config.yaml     → internaldb (Daana's control database)
+#   connections.yaml         → customerdb (your data warehouse)
+#
+# Quick Start:
+#   1. Update the connection profile with your database credentials
+#   2. Validate: daana-cli check connections
+#   3. Use in commands with --connection-profiles flag
+#
+# Security Best Practices:
+#   - Use environment variables for sensitive values (${VAR_NAME})
+#   - Never commit passwords or credentials to version control
+#   - Enable SSL/TLS for production (sslmode: require)
+#
+# Learn more: https://docs.daana.dev/configuration
+#
+# ===========================================================================
+
+connections:
+
+  # ---------------------------------------------------------------------------
+  # POSTGRESQL - Default and Recommended
+  # ---------------------------------------------------------------------------
+  # PostgreSQL is the default and most tested dialect with Daana CLI.
+  # It offers excellent performance and full feature support.
+  dev:
+    type: "postgresql"           # Required: Database dialect
+    host: "localhost"            # Required: Database host
+    port: 5432                   # Required: Database port
+    user: "dev"                  # Required: Database user
+    password: "devpass"          # Required: Database password (matches docker-compose)
+    database: "customerdb"       # Required: Database name
+    sslmode: "disable"           # Options: disable, require, verify-ca, verify-full
+    target_schema: "daana_dw"    # Optional: Schema for transformed data
+    # Optional connection settings:
+    # connect_timeout: 15
+    # application_name: "daana-Adventure Works Ddw"
+    # pool_min_conns: 1
+    # pool_max_conns: 10
+
+  # Production PostgreSQL with SSL
+  # prod:
+  #   type: "postgresql"
+  #   host: "prod-db.example.com"
+  #   port: 5432
+  #   user: "${PROD_USER}"          # Use env vars for production!
+  #   password: "${PROD_PASSWORD}"
+  #   database: "analytics"
+  #   sslmode: "require"            # Always use SSL in production
+  #   target_schema: "daana_dw"
+
+  # ---------------------------------------------------------------------------
+  # BIGQUERY - Google Cloud Data Warehouse
+  # ---------------------------------------------------------------------------
+  # Serverless, highly scalable cloud data warehouse.
+  # Ideal for analytics on massive datasets with pay-per-query pricing.
+  #
+  # bigquery:
+  #   type: "bigquery"              # Required: Dialect type
+  #   project_id: "my-gcp-project"  # Required: GCP project ID
+  #   dataset: "daana_dw"           # Required: BigQuery dataset name
+  #   location: "US"                # Required: Dataset location (US, EU, etc.)
+  #   credentials_file: "${BQ_CREDENTIALS_FILE}"  # Path to service account JSON
+  #   # OR use application default credentials:
+  #   # use_adc: true
+  #   # Optional:
+  #   # timeout: 30
+  #   #
+  #   # Note: Service account needs roles:
+  #   #   - BigQuery Data Editor
+  #   #   - BigQuery Job User
+
+  # ---------------------------------------------------------------------------
+  # MICROSOFT SQL SERVER
+  # ---------------------------------------------------------------------------
+  # Enterprise RDBMS from Microsoft, common in Windows environments.
+  # Strong integration with .NET and Microsoft stack.
+  #
+  # mssql:
+  #   type: "mssql"                 # Required: Dialect type
+  #   host: "sqlserver.example.com" # Required: SQL Server host
+  #   port: 1433                    # Required: SQL Server port
+  #   user: "${MSSQL_USER}"         # Required: Database user
+  #   password: "${MSSQL_PASSWORD}" # Required: Database password
+  #   database: "DataWarehouse"     # Required: Database name
+  #   encrypt: true                 # Recommended: Enable encryption
+  #   trust_server_certificate: false # Use proper certificates in production
+  #   target_schema: "daana_dw"
+  #   # Optional:
+  #   # connection_timeout: 30
+
+  # ---------------------------------------------------------------------------
+  # ORACLE DATABASE
+  # ---------------------------------------------------------------------------
+  # Enterprise-grade RDBMS for mission-critical workloads.
+  # Common in large enterprises and financial institutions.
+  #
+  # oracle:
+  #   type: "oracle"                # Required: Dialect type
+  #   host: "oracle.example.com"    # Required: Oracle host
+  #   port: 1521                    # Required: Oracle port
+  #   user: "${ORACLE_USER}"        # Required: Database user
+  #   password: "${ORACLE_PASSWORD}" # Required: Database password
+  #   service_name: "ORCLPDB1"      # Required: Oracle service name
+  #   # OR use SID instead of service_name:
+  #   # sid: "ORCL"
+  #   target_schema: "DAANA_DW"     # Note: Oracle schemas are usually UPPERCASE
+  #   # Optional:
+  #   # connect_timeout: 30
+  #   #
+  #   # Note: Requires Oracle client libraries installed
+
+  # ---------------------------------------------------------------------------
+  # SNOWFLAKE - Cloud Data Platform
+  # ---------------------------------------------------------------------------
+  # Cloud-native data platform with separation of storage and compute.
+  # Instant elasticity with per-second billing.
+  #
+  # snowflake:
+  #   type: "snowflake"             # Required: Dialect type
+  #   account: "xy12345.us-east-1"  # Required: Account identifier (account.region.cloud)
+  #   user: "${SNOWFLAKE_USER}"     # Required: Snowflake user
+  #   password: "${SNOWFLAKE_PASSWORD}" # Required: Password authentication
+  #   # OR use key-pair authentication:
+  #   # private_key_path: "/path/to/rsa_key.p8"
+  #   warehouse: "DAANA_WH"         # Required: Compute warehouse
+  #   database: "ANALYTICS"         # Required: Database name
+  #   schema: "DAANA_DW"            # Required: Schema name
+  #   role: "TRANSFORMER"           # Optional: Role to use
+  #   # Optional:
+  #   # region: "us-east-1"
+  #   #
+  #   # Note: Warehouse must be running for queries (costs apply)
+
+# ===========================================================================
+# NEXT STEPS
+# ===========================================================================
+#
+# 1. Update the "dev" profile with your actual database credentials
+# 2. Set environment variables for sensitive values:
+#      export DB_PASSWORD='your-password'
+#      export PROD_USER='prod-user'
+#      export PROD_PASSWORD='prod-password'
+#
+# 3. Validate your configuration:
+#      daana-cli check connections
+#
+# 4. Use in commands:
+#      daana-cli install --connection-profiles connections.yaml --profile dev
+#      daana-cli deploy workflow.yaml --db-host localhost --db-port 5434
+#
+# For more info: https://docs.daana.dev/configuration
+# ===========================================================================

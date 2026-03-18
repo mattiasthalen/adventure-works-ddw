@@ -1,0 +1,141 @@
+# ===========================================================================
+# DATA MODEL - Adventure Works Ddw
+# ===========================================================================
+#
+# This file defines your business entities, their attributes, and relationships.
+# It's the foundation of your data transformation pipeline.
+#
+# Quick Start:
+#   1. Define your entities (e.g., CUSTOMER, ORDER, PRODUCT)
+#   2. Add attributes to each entity
+#   3. Define relationships between entities
+#   4. Validate: daana-cli check model model.yaml
+#
+# Learn more: https://docs.daana.dev/model-language
+#
+model:
+  id: "ADVENTURE_WORKS_DDW_MODEL"
+  name: "AdventureWorksDdwModel"
+  definition: "Business representation of Adventure Works Ddw"
+  description: "Transforms raw operational data into clean business entities for analytics"
+
+  entities:
+    # =========================================================================
+    # CUSTOMER - Individual customers or clients
+    # =========================================================================
+    - id: "CUSTOMER"
+      name: "CUSTOMER"
+      definition: "A customer who makes purchases"
+      description: "Represents individual customers with their contact information and location"
+      attributes:
+        - id: "CUSTOMER_ID"
+          name: "CUSTOMER_ID"
+          definition: "Unique identifier for the customer"
+          description: "Primary key from the customers table"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "CUSTOMER_CITY"
+          name: "CUSTOMER_CITY"
+          definition: "City where the customer is located"
+          description: "Customer's city for delivery and analysis"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "CUSTOMER_STATE"
+          name: "CUSTOMER_STATE"
+          definition: "State where the customer is located"
+          description: "State or province code"
+          type: "STRING"
+          effective_timestamp: true
+
+    # =========================================================================
+    # ORDER - Purchase transactions made by customers
+    # =========================================================================
+    - id: "ORDER"
+      name: "ORDER"
+      definition: "A purchase order placed by a customer"
+      description: "Represents individual orders with their status and timestamps"
+      attributes:
+        - id: "ORDER_ID"
+          name: "ORDER_ID"
+          definition: "Unique identifier for the order"
+          description: "Primary key from the orders table"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "ORDER_STATUS"
+          name: "ORDER_STATUS"
+          definition: "Current status of the order"
+          description: "Status like delivered, shipped, canceled, processing"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "ORDER_PURCHASE_TS"
+          name: "ORDER_PURCHASE_TS"
+          definition: "When the order was placed"
+          description: "Timestamp when customer completed the purchase"
+          type: "START_TIMESTAMP"
+
+        - id: "ORDER_DELIVERED_TS"
+          name: "ORDER_DELIVERED_TS"
+          definition: "When the order was delivered"
+          description: "Timestamp when order was delivered to the customer"
+          type: "END_TIMESTAMP"
+
+        # Grouped attribute example: Order value with currency
+        - id: "ORDER_VALUE"
+          name: "ORDER_VALUE"
+          definition: "Total monetary value of the order"
+          description: "Complete order value including amount and currency denomination"
+          effective_timestamp: true
+          group:
+            - id: "ORDER_VALUE_AMOUNT"
+              name: "ORDER_VALUE_AMOUNT"
+              definition: "Monetary value of the order"
+              description: "Total order value in the specified currency"
+              type: "NUMBER"
+            - id: "ORDER_VALUE_CURRENCY"
+              name: "ORDER_VALUE_CURRENCY"
+              definition: "Currency of the order value"
+              description: "Three-letter currency code (e.g., USD, EUR, BRL)"
+              type: "UNIT"
+
+    # =========================================================================
+    # PRODUCT - Items available for sale
+    # =========================================================================
+    - id: "PRODUCT"
+      name: "PRODUCT"
+      definition: "A product available for purchase"
+      description: "Represents books and other items in the catalog"
+      attributes:
+        - id: "PRODUCT_ID"
+          name: "PRODUCT_ID"
+          definition: "Unique identifier for the product"
+          description: "Primary key from the products table"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "PRODUCT_TITLE"
+          name: "PRODUCT_TITLE"
+          definition: "Title of the product"
+          description: "Name or title of the item"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "PRODUCT_FORMAT"
+          name: "PRODUCT_FORMAT"
+          definition: "Format of the product"
+          description: "Physical format like Hardcover, Paperback, eBook"
+          type: "STRING"
+          effective_timestamp: true
+
+  # ===========================================================================
+  # RELATIONSHIPS - How entities connect to each other
+  # ===========================================================================
+  relationships:
+    - name: "IS_PLACED_BY"
+      definition: "Order is placed by a customer"
+      description: "Links orders to the customer who placed them. One customer can place many orders."
+      source_entity_id: "ORDER"
+      target_entity_id: "CUSTOMER"

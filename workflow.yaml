@@ -1,0 +1,62 @@
+# ===========================================================================
+# WORKFLOW - Adventure Works Ddw
+# ===========================================================================
+#
+# This file orchestrates your data transformation pipeline by connecting:
+#   • Your data model (entities and attributes)
+#   • Mapping files (how source data maps to entities)
+#   • Connection profile (which database to use)
+#
+# Quick Start:
+#   1. Update connection to match your connections.yaml
+#   2. Ensure model file path is correct
+#   3. Add mapping files after generating them with:
+#      daana-cli generate mapping --model model.yaml --all-entities --dir mappings/
+#   4. Validate: daana-cli check workflow workflow.yaml
+#   5. Deploy: daana-cli deploy workflow.yaml
+#   6. Execute: daana-cli execute workflow.yaml
+#
+# Learn more: https://docs.daana.dev/tutorial
+#
+workflow:
+  id: "ADVENTURE_WORKS_DDW_WORKFLOW"
+  name: "Adventure Works Ddw Workflow"
+  definition: "Transform Adventure Works Ddw data to business entities"
+  description: |
+    This workflow reads from operational tables and creates
+    clean business entities in the daana_dw schema.
+
+  # -------------------------------------------------------------------------
+  # Model - Path to your data model file (YAML or JSON)
+  # -------------------------------------------------------------------------
+  model:
+    file: "model.yaml"
+
+  # -------------------------------------------------------------------------
+  # Mappings - List your mapping files here (processed in order)
+  # -------------------------------------------------------------------------
+  # Tip: Generate mappings with:
+  #   daana-cli generate mapping --model model.yaml --all-entities --dir mappings/
+  mappings:
+    - "mappings/customer-mapping.yaml"
+    - "mappings/order-mapping.yaml"
+
+  # -------------------------------------------------------------------------
+  # Connection Profile - References connections.yaml
+  # -------------------------------------------------------------------------
+  connection: "dev"  # Use "dev", "prod", or your custom profile
+
+  # -------------------------------------------------------------------------
+  # Advanced Settings (Optional) - Batch processing configuration
+  # -------------------------------------------------------------------------
+  # Uncomment and configure for incremental/batch processing:
+  #
+  # advanced:
+  #   # Column in source tables that marks ingestion/event time
+  #   batch_column: "ingestion_timestamp"
+  #
+  #   # Filter logic for incremental processing
+  #   # Template vars (${BATCH_START}, ${BATCH_END}) are provided at runtime
+  #   read_logic: |
+  #     {{ batch_column }} > '${BATCH_START}'
+  #     AND {{ batch_column }} <= '${BATCH_END}'
