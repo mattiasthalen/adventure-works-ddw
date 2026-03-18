@@ -7,4 +7,4 @@ connections:
     password: "devpass"
     database: "customerdb"
     sslmode: "disable"
-    target_schema: "daana_dw"
+    target_schema: "dab"
