@@ -384,3 +384,4 @@ COPY das.aw__sales__store FROM '/docker-entrypoint-initdb.d/data/Store.csv' DELI
 ALTER TABLE das.aw__sales__customer DROP COLUMN account_number;
 ALTER TABLE das.aw__sales__sales_order_detail DROP COLUMN line_total;
 ALTER TABLE das.aw__sales__sales_order_header DROP COLUMN sales_order_number;
+ALTER TABLE das.aw__sales__sales_order_header DROP COLUMN total_due;

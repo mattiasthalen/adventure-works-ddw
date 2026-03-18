@@ -1,6 +1,8 @@
 .PHONY: up down clean restart seed
 
-seed:
+seed: db/seed/data/.downloaded
+
+db/seed/data/.downloaded:
 	@mkdir -p db/seed/data
 	@echo "Downloading Adventure Works CSVs..."
 	@cd db/seed/data && \
@@ -8,6 +10,7 @@ seed:
 		echo "  $$file"; \
 		curl -sL "https://raw.githubusercontent.com/NorfolkDataSci/adventure-works-postgres/master/data/$$file" -o "$$file"; \
 	done
+	@touch db/seed/data/.downloaded
 	@echo "Done."
 
 up: seed
