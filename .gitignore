@@ -35,3 +35,6 @@ test-output.json
 # Build artifacts
 dist/
 build/
+
+# Worktrees
+.worktrees/
