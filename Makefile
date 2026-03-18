@@ -1,6 +1,10 @@
-.PHONY: up down clean restart seed
+.PHONY: help up down clean restart seed
+.DEFAULT_GOAL := help
 
-seed: db/seed/data/.downloaded
+help: ## Show this help message
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-10s\033[0m %s\n", $$1, $$2}'
+
+seed: db/seed/data/.downloaded ## Download Adventure Works CSVs
 
 db/seed/data/.downloaded:
 	@mkdir -p db/seed/data
@@ -13,13 +17,13 @@ db/seed/data/.downloaded:
 	@touch db/seed/data/.downloaded
 	@echo "Done."
 
-up: seed
+up: seed ## Start containers (seeds on first run)
 	docker compose up -d
 
-down:
+down: ## Stop containers
 	docker compose down
 
-clean:
+clean: ## Stop containers and delete volumes
 	docker compose down -v
 
-restart: clean up
+restart: clean up ## Reset and re-seed
