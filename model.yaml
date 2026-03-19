@@ -99,3 +99,92 @@ model:
           description: "Denormalized from country_region table"
           type: "STRING"
           effective_timestamp: true
+
+    - id: "EMPLOYEE"
+      name: "EMPLOYEE"
+      definition: "A person employed by Adventure Works"
+      description: "Extends PERSON with employment details like job title, hire date, and leave balances"
+      attributes:
+        - id: "EMPLOYEE_NATIONAL_ID_NUMBER"
+          name: "EMPLOYEE_NATIONAL_ID_NUMBER"
+          definition: "National ID number"
+          type: "STRING"
+
+        - id: "EMPLOYEE_LOGIN_ID"
+          name: "EMPLOYEE_LOGIN_ID"
+          definition: "Login ID"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "EMPLOYEE_JOB_TITLE"
+          name: "EMPLOYEE_JOB_TITLE"
+          definition: "Job title"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "EMPLOYEE_MARITAL_STATUS"
+          name: "EMPLOYEE_MARITAL_STATUS"
+          definition: "Marital status"
+          description: "M = Married, S = Single"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "EMPLOYEE_GENDER"
+          name: "EMPLOYEE_GENDER"
+          definition: "Gender"
+          description: "M = Male, F = Female"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "EMPLOYEE_SALARIED_FLAG"
+          name: "EMPLOYEE_SALARIED_FLAG"
+          definition: "Salaried flag"
+          description: "true = salaried, false = hourly"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "EMPLOYEE_VACATION_HOURS"
+          name: "EMPLOYEE_VACATION_HOURS"
+          definition: "Vacation hours"
+          type: "NUMBER"
+          effective_timestamp: true
+
+        - id: "EMPLOYEE_SICK_LEAVE_HOURS"
+          name: "EMPLOYEE_SICK_LEAVE_HOURS"
+          definition: "Sick leave hours"
+          type: "NUMBER"
+          effective_timestamp: true
+
+        - id: "EMPLOYEE_CURRENT_FLAG"
+          name: "EMPLOYEE_CURRENT_FLAG"
+          definition: "Current flag"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "EMPLOYEE_BIRTH_DATE"
+          name: "EMPLOYEE_BIRTH_DATE"
+          definition: "Birth date"
+          type: "START_TIMESTAMP"
+
+        - id: "EMPLOYEE_HIRE_DATE"
+          name: "EMPLOYEE_HIRE_DATE"
+          definition: "Hire date"
+          type: "START_TIMESTAMP"
+
+    - id: "DEPARTMENT"
+      name: "DEPARTMENT"
+      definition: "An organizational department"
+      description: "Represents departments within Adventure Works such as Engineering, Sales, Marketing"
+      attributes:
+        - id: "DEPARTMENT_NAME"
+          name: "DEPARTMENT_NAME"
+          definition: "Department name"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "DEPARTMENT_GROUP_NAME"
+          name: "DEPARTMENT_GROUP_NAME"
+          definition: "Department group name"
+          description: "High-level grouping such as Research and Development, Sales and Marketing"
+          type: "STRING"
+          effective_timestamp: true
