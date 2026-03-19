@@ -1,141 +1,101 @@
-# ===========================================================================
-# DATA MODEL - Adventure Works Ddw
-# ===========================================================================
-#
-# This file defines your business entities, their attributes, and relationships.
-# It's the foundation of your data transformation pipeline.
-#
-# Quick Start:
-#   1. Define your entities (e.g., CUSTOMER, ORDER, PRODUCT)
-#   2. Add attributes to each entity
-#   3. Define relationships between entities
-#   4. Validate: daana-cli check model model.yaml
-#
-# Learn more: https://docs.daana.dev/model-language
-#
 model:
   id: "ADVENTURE_WORKS_DDW_MODEL"
-  name: "AdventureWorksDdwModel"
-  definition: "Business representation of Adventure Works Ddw"
-  description: "Transforms raw operational data into clean business entities for analytics"
+  name: "ADVENTURE_WORKS_DDW_MODEL"
+  definition: "Full enterprise data model for Adventure Works"
+  description: "Transforms raw operational data from Person, HR, Production, Purchasing, and Sales domains into clean business entities"
 
   entities:
-    # =========================================================================
-    # CUSTOMER - Individual customers or clients
-    # =========================================================================
-    - id: "CUSTOMER"
-      name: "CUSTOMER"
-      definition: "A customer who makes purchases"
-      description: "Represents individual customers with their contact information and location"
+    - id: "PERSON"
+      name: "PERSON"
+      definition: "An individual tracked in the system"
+      description: "Represents people across all roles: customers, employees, vendors, and contacts"
       attributes:
-        - id: "CUSTOMER_ID"
-          name: "CUSTOMER_ID"
-          definition: "Unique identifier for the customer"
-          description: "Primary key from the customers table"
+        - id: "PERSON_TYPE"
+          name: "PERSON_TYPE"
+          definition: "Classification of the person"
+          description: "Type code: SC (Store Contact), VC (Vendor Contact), IN (Individual), EM (Employee), SP (Sales Person), GC (General Contact)"
           type: "STRING"
           effective_timestamp: true
 
-        - id: "CUSTOMER_CITY"
-          name: "CUSTOMER_CITY"
-          definition: "City where the customer is located"
-          description: "Customer's city for delivery and analysis"
+        - id: "PERSON_TITLE"
+          name: "PERSON_TITLE"
+          definition: "Courtesy title"
+          description: "Title such as Mr., Ms., Dr."
           type: "STRING"
           effective_timestamp: true
 
-        - id: "CUSTOMER_STATE"
-          name: "CUSTOMER_STATE"
-          definition: "State where the customer is located"
-          description: "State or province code"
+        - id: "PERSON_FIRST_NAME"
+          name: "PERSON_FIRST_NAME"
+          definition: "First name of the person"
           type: "STRING"
           effective_timestamp: true
 
-    # =========================================================================
-    # ORDER - Purchase transactions made by customers
-    # =========================================================================
-    - id: "ORDER"
-      name: "ORDER"
-      definition: "A purchase order placed by a customer"
-      description: "Represents individual orders with their status and timestamps"
+        - id: "PERSON_MIDDLE_NAME"
+          name: "PERSON_MIDDLE_NAME"
+          definition: "Middle name of the person"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "PERSON_LAST_NAME"
+          name: "PERSON_LAST_NAME"
+          definition: "Last name of the person"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "PERSON_SUFFIX"
+          name: "PERSON_SUFFIX"
+          definition: "Name suffix"
+          description: "Suffix such as Jr., Sr., III"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "PERSON_EMAIL_PROMOTION"
+          name: "PERSON_EMAIL_PROMOTION"
+          definition: "Email promotion preference level"
+          description: "0 = no promotions, 1 = from Adventure Works, 2 = from Adventure Works and partners"
+          type: "NUMBER"
+          effective_timestamp: true
+
+    - id: "ADDRESS"
+      name: "ADDRESS"
+      definition: "A physical address"
+      description: "Represents mailing and shipping addresses with full geographic context"
       attributes:
-        - id: "ORDER_ID"
-          name: "ORDER_ID"
-          definition: "Unique identifier for the order"
-          description: "Primary key from the orders table"
+        - id: "ADDRESS_LINE_1"
+          name: "ADDRESS_LINE_1"
+          definition: "Primary street address"
           type: "STRING"
           effective_timestamp: true
 
-        - id: "ORDER_STATUS"
-          name: "ORDER_STATUS"
-          definition: "Current status of the order"
-          description: "Status like delivered, shipped, canceled, processing"
+        - id: "ADDRESS_LINE_2"
+          name: "ADDRESS_LINE_2"
+          definition: "Secondary address line"
+          description: "Apartment, suite, or unit number"
           type: "STRING"
           effective_timestamp: true
 
-        - id: "ORDER_PURCHASE_TS"
-          name: "ORDER_PURCHASE_TS"
-          definition: "When the order was placed"
-          description: "Timestamp when customer completed the purchase"
-          type: "START_TIMESTAMP"
-
-        - id: "ORDER_DELIVERED_TS"
-          name: "ORDER_DELIVERED_TS"
-          definition: "When the order was delivered"
-          description: "Timestamp when order was delivered to the customer"
-          type: "END_TIMESTAMP"
-
-        # Grouped attribute example: Order value with currency
-        - id: "ORDER_VALUE"
-          name: "ORDER_VALUE"
-          definition: "Total monetary value of the order"
-          description: "Complete order value including amount and currency denomination"
-          effective_timestamp: true
-          group:
-            - id: "ORDER_VALUE_AMOUNT"
-              name: "ORDER_VALUE_AMOUNT"
-              definition: "Monetary value of the order"
-              description: "Total order value in the specified currency"
-              type: "NUMBER"
-            - id: "ORDER_VALUE_CURRENCY"
-              name: "ORDER_VALUE_CURRENCY"
-              definition: "Currency of the order value"
-              description: "Three-letter currency code (e.g., USD, EUR, BRL)"
-              type: "UNIT"
-
-    # =========================================================================
-    # PRODUCT - Items available for sale
-    # =========================================================================
-    - id: "PRODUCT"
-      name: "PRODUCT"
-      definition: "A product available for purchase"
-      description: "Represents books and other items in the catalog"
-      attributes:
-        - id: "PRODUCT_ID"
-          name: "PRODUCT_ID"
-          definition: "Unique identifier for the product"
-          description: "Primary key from the products table"
+        - id: "ADDRESS_CITY"
+          name: "ADDRESS_CITY"
+          definition: "City name"
           type: "STRING"
           effective_timestamp: true
 
-        - id: "PRODUCT_TITLE"
-          name: "PRODUCT_TITLE"
-          definition: "Title of the product"
-          description: "Name or title of the item"
+        - id: "ADDRESS_POSTAL_CODE"
+          name: "ADDRESS_POSTAL_CODE"
+          definition: "Postal or ZIP code"
           type: "STRING"
           effective_timestamp: true
 
-        - id: "PRODUCT_FORMAT"
-          name: "PRODUCT_FORMAT"
-          definition: "Format of the product"
-          description: "Physical format like Hardcover, Paperback, eBook"
+        - id: "ADDRESS_STATE_PROVINCE_NAME"
+          name: "ADDRESS_STATE_PROVINCE_NAME"
+          definition: "State or province name"
+          description: "Denormalized from state_province and country_region tables"
           type: "STRING"
           effective_timestamp: true
 
-  # ===========================================================================
-  # RELATIONSHIPS - How entities connect to each other
-  # ===========================================================================
-  relationships:
-    - name: "IS_PLACED_BY"
-      definition: "Order is placed by a customer"
-      description: "Links orders to the customer who placed them. One customer can place many orders."
-      source_entity_id: "ORDER"
-      target_entity_id: "CUSTOMER"
+        - id: "ADDRESS_COUNTRY_REGION_NAME"
+          name: "ADDRESS_COUNTRY_REGION_NAME"
+          definition: "Country or region name"
+          description: "Denormalized from country_region table"
+          type: "STRING"
+          effective_timestamp: true
