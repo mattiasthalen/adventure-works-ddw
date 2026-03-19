@@ -7,7 +7,7 @@ help: ## Show this help message
 setup: _seed _docker-up _install run ## From zero to fully loaded data warehouse
 
 run: ## Re-run pipeline after model/mapping changes
-	daana-cli check --no-tui
+	daana-cli check workflow --no-tui
 	daana-cli deploy --no-tui
 	daana-cli execute --no-tui
 
