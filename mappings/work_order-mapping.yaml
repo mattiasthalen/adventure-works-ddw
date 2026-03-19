@@ -1,0 +1,37 @@
+entity_id: "WORK_ORDER"
+
+mapping_groups:
+  - name: "default_mapping_group"
+    allow_multiple_identifiers: false
+
+    tables:
+      - connection: "dev"
+        table: "das.aw__production__work_order"
+
+        primary_keys:
+          - work_order_id
+
+        ingestion_strategy: FULL
+
+        entity_effective_timestamp_expression: "modified_date"
+
+        attributes:
+          - id: "WORK_ORDER_ORDER_QTY"
+            transformation_expression: "order_qty"
+
+          - id: "WORK_ORDER_SCRAPPED_QTY"
+            transformation_expression: "scrapped_qty"
+
+          - id: "WORK_ORDER_START_DATE"
+            transformation_expression: "start_date"
+
+          - id: "WORK_ORDER_END_DATE"
+            transformation_expression: "end_date"
+
+          - id: "WORK_ORDER_DUE_DATE"
+            transformation_expression: "due_date"
+
+    relationships:
+      - id: "WORK_ORDER_WORK_ORDER_IS_FOR_PRODUCT_PRODUCT"
+        source_table: "das.aw__production__work_order"
+        target_transformation_expression: "product_id"

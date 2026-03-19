@@ -1,0 +1,71 @@
+entity_id: "PRODUCT"
+
+mapping_groups:
+  - name: "default_mapping_group"
+    allow_multiple_identifiers: false
+
+    tables:
+      - connection: "dev"
+        table: "das.aw__production__product"
+
+        primary_keys:
+          - product_id
+
+        ingestion_strategy: FULL
+
+        entity_effective_timestamp_expression: "modified_date"
+
+        attributes:
+          - id: "PRODUCT_NAME"
+            transformation_expression: "name"
+
+          - id: "PRODUCT_NUMBER"
+            transformation_expression: "product_number"
+
+          - id: "PRODUCT_MAKE_FLAG"
+            transformation_expression: "make_flag"
+
+          - id: "PRODUCT_FINISHED_GOODS_FLAG"
+            transformation_expression: "finished_goods_flag"
+
+          - id: "PRODUCT_COLOR"
+            transformation_expression: "color"
+
+          - id: "PRODUCT_SAFETY_STOCK_LEVEL"
+            transformation_expression: "safety_stock_level"
+
+          - id: "PRODUCT_REORDER_POINT"
+            transformation_expression: "reorder_point"
+
+          - id: "PRODUCT_STANDARD_COST"
+            transformation_expression: "standard_cost"
+
+          - id: "PRODUCT_LIST_PRICE"
+            transformation_expression: "list_price"
+
+          - id: "PRODUCT_SIZE"
+            transformation_expression: "size"
+
+          - id: "PRODUCT_WEIGHT"
+            transformation_expression: "weight"
+
+          - id: "PRODUCT_DAYS_TO_MANUFACTURE"
+            transformation_expression: "days_to_manufacture"
+
+          - id: "PRODUCT_LINE"
+            transformation_expression: "product_line"
+
+          - id: "PRODUCT_CLASS"
+            transformation_expression: "class"
+
+          - id: "PRODUCT_STYLE"
+            transformation_expression: "style"
+
+          - id: "PRODUCT_SELL_START_DATE"
+            transformation_expression: "sell_start_date"
+
+          - id: "PRODUCT_SELL_END_DATE"
+            transformation_expression: "sell_end_date"
+
+          - id: "PRODUCT_DISCONTINUED_DATE"
+            transformation_expression: "discontinued_date"
