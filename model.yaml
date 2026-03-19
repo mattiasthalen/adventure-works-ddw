@@ -356,3 +356,85 @@ model:
           name: "WORK_ORDER_DUE_DATE"
           definition: "Due date"
           type: "END_TIMESTAMP"
+
+    - id: "VENDOR"
+      name: "VENDOR"
+      definition: "A supplier of products or services"
+      description: "Represents vendors that Adventure Works purchases from"
+      attributes:
+        - id: "VENDOR_ACCOUNT_NUMBER"
+          name: "VENDOR_ACCOUNT_NUMBER"
+          definition: "Vendor account number"
+          type: "STRING"
+          identifier: true
+
+        - id: "VENDOR_NAME"
+          name: "VENDOR_NAME"
+          definition: "Vendor name"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "VENDOR_CREDIT_RATING"
+          name: "VENDOR_CREDIT_RATING"
+          definition: "Vendor credit rating"
+          description: "1 = Superior, 2 = Excellent, 3 = Above Average, 4 = Average, 5 = Below Average"
+          type: "NUMBER"
+          effective_timestamp: true
+
+        - id: "VENDOR_PREFERRED_STATUS"
+          name: "VENDOR_PREFERRED_STATUS"
+          definition: "Vendor preferred status"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "VENDOR_ACTIVE_FLAG"
+          name: "VENDOR_ACTIVE_FLAG"
+          definition: "Vendor active flag"
+          type: "STRING"
+          effective_timestamp: true
+
+    - id: "PURCHASE_ORDER"
+      name: "PURCHASE_ORDER"
+      definition: "A purchase order placed with a vendor"
+      description: "Represents orders for products or materials from external suppliers"
+      attributes:
+        - id: "PURCHASE_ORDER_STATUS"
+          name: "PURCHASE_ORDER_STATUS"
+          definition: "Purchase order status"
+          description: "1 = Pending, 2 = Approved, 3 = Rejected, 4 = Complete"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "PURCHASE_ORDER_REVISION_NUMBER"
+          name: "PURCHASE_ORDER_REVISION_NUMBER"
+          definition: "Purchase order revision number"
+          type: "NUMBER"
+          effective_timestamp: true
+
+        - id: "PURCHASE_ORDER_SUB_TOTAL"
+          name: "PURCHASE_ORDER_SUB_TOTAL"
+          definition: "Purchase order sub total"
+          type: "NUMBER"
+          effective_timestamp: true
+
+        - id: "PURCHASE_ORDER_TAX_AMT"
+          name: "PURCHASE_ORDER_TAX_AMT"
+          definition: "Purchase order tax amount"
+          type: "NUMBER"
+          effective_timestamp: true
+
+        - id: "PURCHASE_ORDER_FREIGHT"
+          name: "PURCHASE_ORDER_FREIGHT"
+          definition: "Purchase order freight"
+          type: "NUMBER"
+          effective_timestamp: true
+
+        - id: "PURCHASE_ORDER_ORDER_DATE"
+          name: "PURCHASE_ORDER_ORDER_DATE"
+          definition: "Order date"
+          type: "START_TIMESTAMP"
+
+        - id: "PURCHASE_ORDER_SHIP_DATE"
+          name: "PURCHASE_ORDER_SHIP_DATE"
+          definition: "Ship date"
+          type: "END_TIMESTAMP"
