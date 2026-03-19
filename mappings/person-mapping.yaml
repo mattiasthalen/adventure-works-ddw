@@ -1,0 +1,38 @@
+entity_id: "PERSON"
+
+mapping_groups:
+  - name: "default_mapping_group"
+    allow_multiple_identifiers: false
+
+    tables:
+      - connection: "dev"
+        table: "das.aw__person__person"
+
+        primary_keys:
+          - business_entity_id
+
+        ingestion_strategy: FULL
+
+        entity_effective_timestamp_expression: "modified_date"
+
+        attributes:
+          - id: "PERSON_TYPE"
+            transformation_expression: "person_type"
+
+          - id: "PERSON_TITLE"
+            transformation_expression: "title"
+
+          - id: "PERSON_FIRST_NAME"
+            transformation_expression: "first_name"
+
+          - id: "PERSON_MIDDLE_NAME"
+            transformation_expression: "middle_name"
+
+          - id: "PERSON_LAST_NAME"
+            transformation_expression: "last_name"
+
+          - id: "PERSON_SUFFIX"
+            transformation_expression: "suffix"
+
+          - id: "PERSON_EMAIL_PROMOTION"
+            transformation_expression: "email_promotion"
