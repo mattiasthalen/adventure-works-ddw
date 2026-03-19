@@ -37,9 +37,9 @@ workflow:
   # -------------------------------------------------------------------------
   # Tip: Generate mappings with:
   #   daana-cli generate mapping --model model.yaml --all-entities --dir mappings/
-  mappings:
-    - "mappings/customer-mapping.yaml"
-    - "mappings/order-mapping.yaml"
+  mappings: []
+    # Mappings will be generated with:
+    #   daana-cli generate mapping --model model.yaml --all-entities --dir mappings/
 
   # -------------------------------------------------------------------------
   # Connection Profile - References connections.yaml
