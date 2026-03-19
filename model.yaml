@@ -519,3 +519,150 @@ model:
           description: "High-level region such as North America, Europe, Pacific"
           type: "STRING"
           effective_timestamp: true
+
+    - id: "SALES_ORDER"
+      name: "SALES_ORDER"
+      definition: "A customer sales order"
+      description: "Represents a sales transaction with shipping, billing, and payment details"
+      attributes:
+        - id: "SALES_ORDER_STATUS"
+          name: "SALES_ORDER_STATUS"
+          definition: "Sales order status"
+          description: "1 = In Process, 2 = Approved, 3 = Backordered, 4 = Rejected, 5 = Shipped, 6 = Cancelled"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "SALES_ORDER_ONLINE_ORDER_FLAG"
+          name: "SALES_ORDER_ONLINE_ORDER_FLAG"
+          definition: "Online order flag"
+          description: "true = online, false = sales person"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "SALES_ORDER_PURCHASE_ORDER_NUMBER"
+          name: "SALES_ORDER_PURCHASE_ORDER_NUMBER"
+          definition: "Purchase order number"
+          type: "STRING"
+
+        - id: "SALES_ORDER_ACCOUNT_NUMBER"
+          name: "SALES_ORDER_ACCOUNT_NUMBER"
+          definition: "Account number"
+          type: "STRING"
+
+        - id: "SALES_ORDER_SUB_TOTAL"
+          name: "SALES_ORDER_SUB_TOTAL"
+          definition: "Sub total"
+          type: "NUMBER"
+          effective_timestamp: true
+
+        - id: "SALES_ORDER_TAX_AMT"
+          name: "SALES_ORDER_TAX_AMT"
+          definition: "Tax amount"
+          type: "NUMBER"
+          effective_timestamp: true
+
+        - id: "SALES_ORDER_FREIGHT"
+          name: "SALES_ORDER_FREIGHT"
+          definition: "Freight"
+          type: "NUMBER"
+          effective_timestamp: true
+
+        - id: "SALES_ORDER_COMMENT"
+          name: "SALES_ORDER_COMMENT"
+          definition: "Comment"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "SALES_ORDER_ORDER_DATE"
+          name: "SALES_ORDER_ORDER_DATE"
+          definition: "Order date"
+          type: "START_TIMESTAMP"
+
+        - id: "SALES_ORDER_DUE_DATE"
+          name: "SALES_ORDER_DUE_DATE"
+          definition: "Due date"
+          type: "END_TIMESTAMP"
+
+        - id: "SALES_ORDER_SHIP_DATE"
+          name: "SALES_ORDER_SHIP_DATE"
+          definition: "Ship date"
+          type: "END_TIMESTAMP"
+
+    - id: "SALES_ORDER_DETAIL"
+      name: "SALES_ORDER_DETAIL"
+      definition: "A line item within a sales order"
+      description: "Represents a single product entry in a sales order with quantity and pricing"
+      attributes:
+        - id: "SALES_ORDER_DETAIL_CARRIER_TRACKING_NUMBER"
+          name: "SALES_ORDER_DETAIL_CARRIER_TRACKING_NUMBER"
+          definition: "Carrier tracking number"
+          type: "STRING"
+
+        - id: "SALES_ORDER_DETAIL_ORDER_QTY"
+          name: "SALES_ORDER_DETAIL_ORDER_QTY"
+          definition: "Order quantity"
+          type: "NUMBER"
+          effective_timestamp: true
+
+        - id: "SALES_ORDER_DETAIL_UNIT_PRICE"
+          name: "SALES_ORDER_DETAIL_UNIT_PRICE"
+          definition: "Unit price"
+          type: "NUMBER"
+          effective_timestamp: true
+
+        - id: "SALES_ORDER_DETAIL_UNIT_PRICE_DISCOUNT"
+          name: "SALES_ORDER_DETAIL_UNIT_PRICE_DISCOUNT"
+          definition: "Unit price discount"
+          type: "NUMBER"
+          effective_timestamp: true
+
+    - id: "SPECIAL_OFFER"
+      name: "SPECIAL_OFFER"
+      definition: "A promotional discount offer"
+      description: "Represents promotional offers with discount percentages, eligibility rules, and validity periods"
+      attributes:
+        - id: "SPECIAL_OFFER_DESCRIPTION"
+          name: "SPECIAL_OFFER_DESCRIPTION"
+          definition: "Special offer description"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "SPECIAL_OFFER_DISCOUNT_PCT"
+          name: "SPECIAL_OFFER_DISCOUNT_PCT"
+          definition: "Discount percentage"
+          type: "NUMBER"
+          effective_timestamp: true
+
+        - id: "SPECIAL_OFFER_TYPE"
+          name: "SPECIAL_OFFER_TYPE"
+          definition: "Special offer type"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "SPECIAL_OFFER_CATEGORY"
+          name: "SPECIAL_OFFER_CATEGORY"
+          definition: "Special offer category"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "SPECIAL_OFFER_MIN_QTY"
+          name: "SPECIAL_OFFER_MIN_QTY"
+          definition: "Minimum quantity"
+          type: "NUMBER"
+          effective_timestamp: true
+
+        - id: "SPECIAL_OFFER_MAX_QTY"
+          name: "SPECIAL_OFFER_MAX_QTY"
+          definition: "Maximum quantity"
+          type: "NUMBER"
+          effective_timestamp: true
+
+        - id: "SPECIAL_OFFER_START_DATE"
+          name: "SPECIAL_OFFER_START_DATE"
+          definition: "Start date"
+          type: "START_TIMESTAMP"
+
+        - id: "SPECIAL_OFFER_END_DATE"
+          name: "SPECIAL_OFFER_END_DATE"
+          definition: "End date"
+          type: "END_TIMESTAMP"
