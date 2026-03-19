@@ -438,3 +438,84 @@ model:
           name: "PURCHASE_ORDER_SHIP_DATE"
           definition: "Ship date"
           type: "END_TIMESTAMP"
+
+    - id: "CUSTOMER"
+      name: "CUSTOMER"
+      definition: "A customer account"
+      description: "Represents a customer linked to either a person or a store, assigned to a sales territory"
+      attributes:
+        - id: "CUSTOMER_ACCOUNT_NUMBER"
+          name: "CUSTOMER_ACCOUNT_NUMBER"
+          definition: "Customer account number"
+          type: "STRING"
+          identifier: true
+
+    - id: "STORE"
+      name: "STORE"
+      definition: "A retail store that purchases products"
+      description: "Represents business-to-business customers that are retail stores"
+      attributes:
+        - id: "STORE_NAME"
+          name: "STORE_NAME"
+          definition: "Store name"
+          type: "STRING"
+          effective_timestamp: true
+
+    - id: "SALES_PERSON"
+      name: "SALES_PERSON"
+      definition: "A sales representative"
+      description: "Extends EMPLOYEE with sales-specific metrics like quota, bonus, and commission"
+      attributes:
+        - id: "SALES_PERSON_SALES_QUOTA"
+          name: "SALES_PERSON_SALES_QUOTA"
+          definition: "Sales quota"
+          type: "NUMBER"
+          effective_timestamp: true
+
+        - id: "SALES_PERSON_BONUS"
+          name: "SALES_PERSON_BONUS"
+          definition: "Bonus"
+          type: "NUMBER"
+          effective_timestamp: true
+
+        - id: "SALES_PERSON_COMMISSION_PCT"
+          name: "SALES_PERSON_COMMISSION_PCT"
+          definition: "Commission percentage"
+          type: "NUMBER"
+          effective_timestamp: true
+
+        - id: "SALES_PERSON_SALES_YTD"
+          name: "SALES_PERSON_SALES_YTD"
+          definition: "Sales year to date"
+          type: "NUMBER"
+          effective_timestamp: true
+
+        - id: "SALES_PERSON_SALES_LAST_YEAR"
+          name: "SALES_PERSON_SALES_LAST_YEAR"
+          definition: "Sales last year"
+          type: "NUMBER"
+          effective_timestamp: true
+
+    - id: "SALES_TERRITORY"
+      name: "SALES_TERRITORY"
+      definition: "A geographic sales region"
+      description: "Represents sales territories used for territory-based reporting and sales person assignment"
+      attributes:
+        - id: "SALES_TERRITORY_NAME"
+          name: "SALES_TERRITORY_NAME"
+          definition: "Sales territory name"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "SALES_TERRITORY_COUNTRY_REGION_CODE"
+          name: "SALES_TERRITORY_COUNTRY_REGION_CODE"
+          definition: "Country region code"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "SALES_TERRITORY_GROUP"
+          name: "SALES_TERRITORY_GROUP"
+          definition: "Sales territory group"
+          description: "High-level region such as North America, Europe, Pacific"
+          type: "STRING"
+          effective_timestamp: true
