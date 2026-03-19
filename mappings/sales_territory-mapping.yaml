@@ -1,0 +1,26 @@
+entity_id: "SALES_TERRITORY"
+
+mapping_groups:
+  - name: "default_mapping_group"
+    allow_multiple_identifiers: false
+
+    tables:
+      - connection: "dev"
+        table: "das.aw__sales__sales_territory"
+
+        primary_keys:
+          - territory_id
+
+        ingestion_strategy: FULL
+
+        entity_effective_timestamp_expression: "modified_date"
+
+        attributes:
+          - id: "SALES_TERRITORY_NAME"
+            transformation_expression: "name"
+
+          - id: "SALES_TERRITORY_COUNTRY_REGION_CODE"
+            transformation_expression: "country_region_code"
+
+          - id: "SALES_TERRITORY_GROUP"
+            transformation_expression: "\"group\""

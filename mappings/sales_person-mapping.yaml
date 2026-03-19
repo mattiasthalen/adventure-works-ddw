@@ -1,0 +1,41 @@
+entity_id: "SALES_PERSON"
+
+mapping_groups:
+  - name: "default_mapping_group"
+    allow_multiple_identifiers: false
+
+    tables:
+      - connection: "dev"
+        table: "das.aw__sales__sales_person"
+
+        primary_keys:
+          - business_entity_id
+
+        ingestion_strategy: FULL
+
+        entity_effective_timestamp_expression: "modified_date"
+
+        attributes:
+          - id: "SALES_PERSON_SALES_QUOTA"
+            transformation_expression: "sales_quota"
+
+          - id: "SALES_PERSON_BONUS"
+            transformation_expression: "bonus"
+
+          - id: "SALES_PERSON_COMMISSION_PCT"
+            transformation_expression: "commission_pct"
+
+          - id: "SALES_PERSON_SALES_YTD"
+            transformation_expression: "sales_ytd"
+
+          - id: "SALES_PERSON_SALES_LAST_YEAR"
+            transformation_expression: "sales_last_year"
+
+    relationships:
+      - id: "SALES_PERSON_SALES_PERSON_IS_AN_EMPLOYEE_EMPLOYEE"
+        source_table: "das.aw__sales__sales_person"
+        target_transformation_expression: "business_entity_id"
+
+      - id: "SALES_PERSON_SALES_PERSON_BELONGS_TO_SALES_TERRITORY_SALES_TERRITORY"
+        source_table: "das.aw__sales__sales_person"
+        target_transformation_expression: "territory_id"

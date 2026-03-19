@@ -1,0 +1,25 @@
+entity_id: "STORE"
+
+mapping_groups:
+  - name: "default_mapping_group"
+    allow_multiple_identifiers: false
+
+    tables:
+      - connection: "dev"
+        table: "das.aw__sales__store"
+
+        primary_keys:
+          - business_entity_id
+
+        ingestion_strategy: FULL
+
+        entity_effective_timestamp_expression: "modified_date"
+
+        attributes:
+          - id: "STORE_NAME"
+            transformation_expression: "name"
+
+    relationships:
+      - id: "STORE_STORE_IS_MANAGED_BY_SALES_PERSON_SALES_PERSON"
+        source_table: "das.aw__sales__store"
+        target_transformation_expression: "sales_person_id"
