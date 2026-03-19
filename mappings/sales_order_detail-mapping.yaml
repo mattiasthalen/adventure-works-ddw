@@ -1,0 +1,42 @@
+entity_id: "SALES_ORDER_DETAIL"
+
+mapping_groups:
+  - name: "default_mapping_group"
+    allow_multiple_identifiers: false
+
+    tables:
+      - connection: "dev"
+        table: "das.aw__sales__sales_order_detail"
+
+        primary_keys:
+          - sales_order_detail_id
+
+        ingestion_strategy: FULL
+
+        entity_effective_timestamp_expression: "modified_date"
+
+        attributes:
+          - id: "SALES_ORDER_DETAIL_CARRIER_TRACKING_NUMBER"
+            transformation_expression: "carrier_tracking_number"
+
+          - id: "SALES_ORDER_DETAIL_ORDER_QTY"
+            transformation_expression: "order_qty"
+
+          - id: "SALES_ORDER_DETAIL_UNIT_PRICE"
+            transformation_expression: "unit_price"
+
+          - id: "SALES_ORDER_DETAIL_UNIT_PRICE_DISCOUNT"
+            transformation_expression: "unit_price_discount"
+
+    relationships:
+      - id: "SALES_ORDER_DETAIL_SALES_ORDER_DETAIL_BELONGS_TO_SALES_ORDER_SALES_ORDER"
+        source_table: "das.aw__sales__sales_order_detail"
+        target_transformation_expression: "sales_order_id"
+
+      - id: "SALES_ORDER_DETAIL_SALES_ORDER_DETAIL_REFERS_TO_PRODUCT_PRODUCT"
+        source_table: "das.aw__sales__sales_order_detail"
+        target_transformation_expression: "product_id"
+
+      - id: "SALES_ORDER_DETAIL_SALES_ORDER_DETAIL_HAS_APPLIED_SPECIAL_OFFER_SPECIAL_OFFER"
+        source_table: "das.aw__sales__sales_order_detail"
+        target_transformation_expression: "special_offer_id"

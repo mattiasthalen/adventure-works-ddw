@@ -1,0 +1,33 @@
+entity_id: "CUSTOMER"
+
+mapping_groups:
+  - name: "default_mapping_group"
+    allow_multiple_identifiers: false
+
+    tables:
+      - connection: "dev"
+        table: "das.aw__sales__customer"
+
+        primary_keys:
+          - customer_id
+
+        ingestion_strategy: FULL
+
+        entity_effective_timestamp_expression: "modified_date"
+
+        attributes:
+          - id: "CUSTOMER_ACCOUNT_NUMBER"
+            transformation_expression: "'AW' || LPAD(CAST(customer_id AS VARCHAR), 8, '0')"
+
+    relationships:
+      - id: "CUSTOMER_CUSTOMER_REFERS_TO_PERSON_PERSON"
+        source_table: "das.aw__sales__customer"
+        target_transformation_expression: "person_id"
+
+      - id: "CUSTOMER_CUSTOMER_REFERS_TO_STORE_STORE"
+        source_table: "das.aw__sales__customer"
+        target_transformation_expression: "store_id"
+
+      - id: "CUSTOMER_CUSTOMER_BELONGS_TO_SALES_TERRITORY_SALES_TERRITORY"
+        source_table: "das.aw__sales__customer"
+        target_transformation_expression: "territory_id"
