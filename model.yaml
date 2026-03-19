@@ -188,3 +188,171 @@ model:
           description: "High-level grouping such as Research and Development, Sales and Marketing"
           type: "STRING"
           effective_timestamp: true
+
+    - id: "PRODUCT"
+      name: "PRODUCT"
+      definition: "An item in the product catalog"
+      description: "Represents manufactured and purchased products with pricing, sizing, and categorization"
+      attributes:
+        - id: "PRODUCT_NAME"
+          name: "PRODUCT_NAME"
+          definition: "Product name"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "PRODUCT_NUMBER"
+          name: "PRODUCT_NUMBER"
+          definition: "Product number"
+          type: "STRING"
+          identifier: true
+
+        - id: "PRODUCT_MAKE_FLAG"
+          name: "PRODUCT_MAKE_FLAG"
+          definition: "Make flag"
+          description: "true = manufactured, false = purchased"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "PRODUCT_FINISHED_GOODS_FLAG"
+          name: "PRODUCT_FINISHED_GOODS_FLAG"
+          definition: "Finished goods flag"
+          description: "true = finished good, false = component or raw material"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "PRODUCT_COLOR"
+          name: "PRODUCT_COLOR"
+          definition: "Product color"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "PRODUCT_SAFETY_STOCK_LEVEL"
+          name: "PRODUCT_SAFETY_STOCK_LEVEL"
+          definition: "Safety stock level"
+          type: "NUMBER"
+          effective_timestamp: true
+
+        - id: "PRODUCT_REORDER_POINT"
+          name: "PRODUCT_REORDER_POINT"
+          definition: "Reorder point"
+          type: "NUMBER"
+          effective_timestamp: true
+
+        - id: "PRODUCT_STANDARD_COST"
+          name: "PRODUCT_STANDARD_COST"
+          definition: "Standard cost"
+          type: "NUMBER"
+          effective_timestamp: true
+
+        - id: "PRODUCT_LIST_PRICE"
+          name: "PRODUCT_LIST_PRICE"
+          definition: "List price"
+          type: "NUMBER"
+          effective_timestamp: true
+
+        - id: "PRODUCT_SIZE"
+          name: "PRODUCT_SIZE"
+          definition: "Product size"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "PRODUCT_WEIGHT"
+          name: "PRODUCT_WEIGHT"
+          definition: "Product weight"
+          type: "NUMBER"
+          effective_timestamp: true
+
+        - id: "PRODUCT_DAYS_TO_MANUFACTURE"
+          name: "PRODUCT_DAYS_TO_MANUFACTURE"
+          definition: "Days to manufacture"
+          type: "NUMBER"
+          effective_timestamp: true
+
+        - id: "PRODUCT_LINE"
+          name: "PRODUCT_LINE"
+          definition: "Product line"
+          description: "S = Standard, T = Touring, M = Mountain, R = Road"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "PRODUCT_CLASS"
+          name: "PRODUCT_CLASS"
+          definition: "Product class"
+          description: "L = Low, M = Medium, H = High"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "PRODUCT_STYLE"
+          name: "PRODUCT_STYLE"
+          definition: "Product style"
+          description: "W = Women, M = Men, U = Universal"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "PRODUCT_SUBCATEGORY_NAME"
+          name: "PRODUCT_SUBCATEGORY_NAME"
+          definition: "Product subcategory name"
+          description: "Denormalized from product_subcategory table"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "PRODUCT_CATEGORY_NAME"
+          name: "PRODUCT_CATEGORY_NAME"
+          definition: "Product category name"
+          description: "Denormalized from product_category table"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "PRODUCT_MODEL_NAME"
+          name: "PRODUCT_MODEL_NAME"
+          definition: "Product model name"
+          description: "Denormalized from product_model table"
+          type: "STRING"
+          effective_timestamp: true
+
+        - id: "PRODUCT_SELL_START_DATE"
+          name: "PRODUCT_SELL_START_DATE"
+          definition: "Sell start date"
+          type: "START_TIMESTAMP"
+
+        - id: "PRODUCT_SELL_END_DATE"
+          name: "PRODUCT_SELL_END_DATE"
+          definition: "Sell end date"
+          type: "END_TIMESTAMP"
+
+        - id: "PRODUCT_DISCONTINUED_DATE"
+          name: "PRODUCT_DISCONTINUED_DATE"
+          definition: "Discontinued date"
+          type: "END_TIMESTAMP"
+
+    - id: "WORK_ORDER"
+      name: "WORK_ORDER"
+      definition: "A manufacturing work order"
+      description: "Represents a production run for a specific product with quantity and schedule"
+      attributes:
+        - id: "WORK_ORDER_ORDER_QTY"
+          name: "WORK_ORDER_ORDER_QTY"
+          definition: "Order quantity"
+          type: "NUMBER"
+          effective_timestamp: true
+
+        - id: "WORK_ORDER_SCRAPPED_QTY"
+          name: "WORK_ORDER_SCRAPPED_QTY"
+          definition: "Scrapped quantity"
+          type: "NUMBER"
+          effective_timestamp: true
+
+        - id: "WORK_ORDER_START_DATE"
+          name: "WORK_ORDER_START_DATE"
+          definition: "Start date"
+          type: "START_TIMESTAMP"
+
+        - id: "WORK_ORDER_END_DATE"
+          name: "WORK_ORDER_END_DATE"
+          definition: "End date"
+          type: "END_TIMESTAMP"
+
+        - id: "WORK_ORDER_DUE_DATE"
+          name: "WORK_ORDER_DUE_DATE"
+          definition: "Due date"
+          type: "END_TIMESTAMP"
