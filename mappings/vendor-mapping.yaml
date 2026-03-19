@@ -1,0 +1,37 @@
+entity_id: "VENDOR"
+
+mapping_groups:
+  - name: "default_mapping_group"
+    allow_multiple_identifiers: false
+
+    tables:
+      - connection: "dev"
+        table: "das.aw__purchasing__vendor"
+
+        primary_keys:
+          - business_entity_id
+
+        ingestion_strategy: FULL
+
+        entity_effective_timestamp_expression: "modified_date"
+
+        attributes:
+          - id: "VENDOR_ACCOUNT_NUMBER"
+            transformation_expression: "account_number"
+
+          - id: "VENDOR_NAME"
+            transformation_expression: "name"
+
+          - id: "VENDOR_CREDIT_RATING"
+            transformation_expression: "credit_rating"
+
+          - id: "VENDOR_PREFERRED_STATUS"
+            transformation_expression: "preferred_vendor_status"
+
+          - id: "VENDOR_ACTIVE_FLAG"
+            transformation_expression: "active_flag"
+
+    relationships:
+      - id: "VENDOR_VENDOR_IS_A_BUSINESS_ENTITY_PERSON"
+        source_table: "das.aw__purchasing__vendor"
+        target_transformation_expression: "business_entity_id"

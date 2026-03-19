@@ -1,0 +1,47 @@
+entity_id: "PURCHASE_ORDER"
+
+mapping_groups:
+  - name: "default_mapping_group"
+    allow_multiple_identifiers: false
+
+    tables:
+      - connection: "dev"
+        table: "das.aw__purchasing__purchase_order_header"
+
+        primary_keys:
+          - purchase_order_id
+
+        ingestion_strategy: FULL
+
+        entity_effective_timestamp_expression: "modified_date"
+
+        attributes:
+          - id: "PURCHASE_ORDER_STATUS"
+            transformation_expression: "status"
+
+          - id: "PURCHASE_ORDER_REVISION_NUMBER"
+            transformation_expression: "revision_number"
+
+          - id: "PURCHASE_ORDER_SUB_TOTAL"
+            transformation_expression: "sub_total"
+
+          - id: "PURCHASE_ORDER_TAX_AMT"
+            transformation_expression: "tax_amt"
+
+          - id: "PURCHASE_ORDER_FREIGHT"
+            transformation_expression: "freight"
+
+          - id: "PURCHASE_ORDER_ORDER_DATE"
+            transformation_expression: "order_date"
+
+          - id: "PURCHASE_ORDER_SHIP_DATE"
+            transformation_expression: "ship_date"
+
+    relationships:
+      - id: "PURCHASE_ORDER_PURCHASE_ORDER_IS_PLACED_WITH_VENDOR_VENDOR"
+        source_table: "das.aw__purchasing__purchase_order_header"
+        target_transformation_expression: "vendor_id"
+
+      - id: "PURCHASE_ORDER_PURCHASE_ORDER_IS_ORDERED_BY_EMPLOYEE_EMPLOYEE"
+        source_table: "das.aw__purchasing__purchase_order_header"
+        target_transformation_expression: "employee_id"
