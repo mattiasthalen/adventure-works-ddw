@@ -666,3 +666,116 @@ model:
           name: "SPECIAL_OFFER_END_DATE"
           definition: "End date"
           type: "END_TIMESTAMP"
+
+  relationships:
+    - name: "EMPLOYEE_IS_A_PERSON"
+      definition: "Links an employee to their person record"
+      description: "Each employee is a person identified by business_entity_id"
+      source_entity_id: "EMPLOYEE"
+      target_entity_id: "PERSON"
+
+    - name: "SALES_PERSON_IS_AN_EMPLOYEE"
+      definition: "Links a sales person to their employee record"
+      description: "Each sales person is an employee identified by business_entity_id"
+      source_entity_id: "SALES_PERSON"
+      target_entity_id: "EMPLOYEE"
+
+    - name: "VENDOR_IS_A_BUSINESS_ENTITY"
+      definition: "Links a vendor to their business entity record"
+      description: "Each vendor is a business entity identified by business_entity_id"
+      source_entity_id: "VENDOR"
+      target_entity_id: "PERSON"
+
+    - name: "PERSON_RESIDES_AT_ADDRESS"
+      definition: "Links a person to their address"
+      description: "Each person has an address via business_entity_address"
+      source_entity_id: "PERSON"
+      target_entity_id: "ADDRESS"
+
+    - name: "EMPLOYEE_BELONGS_TO_DEPARTMENT"
+      definition: "Links an employee to their department"
+      description: "Each employee belongs to a department via employee_department_history"
+      source_entity_id: "EMPLOYEE"
+      target_entity_id: "DEPARTMENT"
+
+    - name: "WORK_ORDER_IS_FOR_PRODUCT"
+      definition: "Links a work order to the product being manufactured"
+      source_entity_id: "WORK_ORDER"
+      target_entity_id: "PRODUCT"
+
+    - name: "PURCHASE_ORDER_IS_PLACED_WITH_VENDOR"
+      definition: "Links a purchase order to the vendor supplying it"
+      source_entity_id: "PURCHASE_ORDER"
+      target_entity_id: "VENDOR"
+
+    - name: "PURCHASE_ORDER_IS_ORDERED_BY_EMPLOYEE"
+      definition: "Links a purchase order to the employee who placed it"
+      source_entity_id: "PURCHASE_ORDER"
+      target_entity_id: "EMPLOYEE"
+
+    - name: "SALES_ORDER_IS_PLACED_BY_CUSTOMER"
+      definition: "Links a sales order to the purchasing customer"
+      source_entity_id: "SALES_ORDER"
+      target_entity_id: "CUSTOMER"
+
+    - name: "SALES_ORDER_IS_SOLD_BY_SALES_PERSON"
+      definition: "Links a sales order to the sales representative"
+      source_entity_id: "SALES_ORDER"
+      target_entity_id: "SALES_PERSON"
+
+    - name: "SALES_ORDER_BELONGS_TO_SALES_TERRITORY"
+      definition: "Links a sales order to its sales territory"
+      source_entity_id: "SALES_ORDER"
+      target_entity_id: "SALES_TERRITORY"
+
+    - name: "SALES_ORDER_IS_BILLED_TO_ADDRESS"
+      definition: "Links a sales order to the billing address"
+      source_entity_id: "SALES_ORDER"
+      target_entity_id: "ADDRESS"
+
+    - name: "SALES_ORDER_IS_SHIPPED_TO_ADDRESS"
+      definition: "Links a sales order to the shipping address"
+      source_entity_id: "SALES_ORDER"
+      target_entity_id: "ADDRESS"
+
+    - name: "SALES_ORDER_DETAIL_BELONGS_TO_SALES_ORDER"
+      definition: "Links a line item to its parent sales order"
+      source_entity_id: "SALES_ORDER_DETAIL"
+      target_entity_id: "SALES_ORDER"
+
+    - name: "SALES_ORDER_DETAIL_REFERS_TO_PRODUCT"
+      definition: "Links a line item to the product ordered"
+      source_entity_id: "SALES_ORDER_DETAIL"
+      target_entity_id: "PRODUCT"
+
+    - name: "SALES_ORDER_DETAIL_HAS_APPLIED_SPECIAL_OFFER"
+      definition: "Links a line item to the special offer applied"
+      source_entity_id: "SALES_ORDER_DETAIL"
+      target_entity_id: "SPECIAL_OFFER"
+
+    - name: "CUSTOMER_REFERS_TO_PERSON"
+      definition: "Links a customer to the person behind the account"
+      description: "Nullable — customer may be a store instead of an individual"
+      source_entity_id: "CUSTOMER"
+      target_entity_id: "PERSON"
+
+    - name: "CUSTOMER_REFERS_TO_STORE"
+      definition: "Links a customer to the store behind the account"
+      description: "Nullable — customer may be a person instead of a store"
+      source_entity_id: "CUSTOMER"
+      target_entity_id: "STORE"
+
+    - name: "CUSTOMER_BELONGS_TO_SALES_TERRITORY"
+      definition: "Links a customer to their assigned sales territory"
+      source_entity_id: "CUSTOMER"
+      target_entity_id: "SALES_TERRITORY"
+
+    - name: "STORE_IS_MANAGED_BY_SALES_PERSON"
+      definition: "Links a store to its assigned sales representative"
+      source_entity_id: "STORE"
+      target_entity_id: "SALES_PERSON"
+
+    - name: "SALES_PERSON_BELONGS_TO_SALES_TERRITORY"
+      definition: "Links a sales person to their assigned territory"
+      source_entity_id: "SALES_PERSON"
+      target_entity_id: "SALES_TERRITORY"
