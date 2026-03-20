@@ -62,10 +62,10 @@ mapping_groups:
         source_table: "das.aw__sales__sales_order_header"
         target_transformation_expression: "territory_id"
 
-      - id: "SALES_ORDER_SALES_ORDER_IS_BILLED_TO_ADDRESS_ADDRESS"
+      - id: "SALES_ORDER_SO_IS_BILLED_TO_ADDRESS_ADDRESS"
         source_table: "das.aw__sales__sales_order_header"
         target_transformation_expression: "bill_to_address_id"
 
-      - id: "SALES_ORDER_SALES_ORDER_IS_SHIPPED_TO_ADDRESS_ADDRESS"
+      - id: "SALES_ORDER_SO_IS_SHIPPED_TO_ADDRESS_ADDRESS"
         source_table: "das.aw__sales__sales_order_header"
         target_transformation_expression: "ship_to_address_id"

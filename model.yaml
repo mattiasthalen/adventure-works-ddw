@@ -728,12 +728,12 @@ model:
       source_entity_id: "SALES_ORDER"
       target_entity_id: "SALES_TERRITORY"
 
-    - name: "SALES_ORDER_IS_BILLED_TO_ADDRESS"
+    - name: "SO_IS_BILLED_TO_ADDRESS"
       definition: "Links a sales order to the billing address"
       source_entity_id: "SALES_ORDER"
       target_entity_id: "ADDRESS"
 
-    - name: "SALES_ORDER_IS_SHIPPED_TO_ADDRESS"
+    - name: "SO_IS_SHIPPED_TO_ADDRESS"
       definition: "Links a sales order to the shipping address"
       source_entity_id: "SALES_ORDER"
       target_entity_id: "ADDRESS"
