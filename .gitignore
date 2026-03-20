@@ -11,12 +11,23 @@
 *.temp
 
 # IDE and editor files
-.vscode/
-.idea/
+.claude
+.vscode
+.idea
 *.swp
 *.swo
 *~
 .DS_Store
+
+# Shell and user dotfiles
+.bash_profile
+.bashrc
+.profile
+.zshrc
+.zprofile
+.gitconfig
+.gitmodules
+.ripgreprc
 
 # Environment and configuration overrides
 .env
