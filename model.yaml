@@ -86,19 +86,19 @@ model:
           type: "STRING"
           effective_timestamp: true
 
-        - id: "ADDRESS_STATE_PROVINCE_NAME"
-          name: "ADDRESS_STATE_PROVINCE_NAME"
-          definition: "State or province name"
-          description: "Denormalized from state_province and country_region tables"
-          type: "STRING"
-          effective_timestamp: true
+        # - id: "ADDRESS_STATE_PROVINCE_NAME"
+        #   name: "ADDRESS_STATE_PROVINCE_NAME"
+        #   definition: "State or province name"
+        #   description: "Denormalized from state_province and country_region tables"
+        #   type: "STRING"
+        #   effective_timestamp: true
 
-        - id: "ADDRESS_COUNTRY_REGION_NAME"
-          name: "ADDRESS_COUNTRY_REGION_NAME"
-          definition: "Country or region name"
-          description: "Denormalized from country_region table"
-          type: "STRING"
-          effective_timestamp: true
+        # - id: "ADDRESS_COUNTRY_REGION_NAME"
+        #   name: "ADDRESS_COUNTRY_REGION_NAME"
+        #   definition: "Country or region name"
+        #   description: "Denormalized from country_region table"
+        #   type: "STRING"
+        #   effective_timestamp: true
 
     - id: "EMPLOYEE"
       name: "EMPLOYEE"
@@ -289,26 +289,26 @@ model:
           type: "STRING"
           effective_timestamp: true
 
-        - id: "PRODUCT_SUBCATEGORY_NAME"
-          name: "PRODUCT_SUBCATEGORY_NAME"
-          definition: "Product subcategory name"
-          description: "Denormalized from product_subcategory table"
-          type: "STRING"
-          effective_timestamp: true
+        # - id: "PRODUCT_SUBCATEGORY_NAME"
+        #   name: "PRODUCT_SUBCATEGORY_NAME"
+        #   definition: "Product subcategory name"
+        #   description: "Denormalized from product_subcategory table"
+        #   type: "STRING"
+        #   effective_timestamp: true
 
-        - id: "PRODUCT_CATEGORY_NAME"
-          name: "PRODUCT_CATEGORY_NAME"
-          definition: "Product category name"
-          description: "Denormalized from product_category table"
-          type: "STRING"
-          effective_timestamp: true
+        # - id: "PRODUCT_CATEGORY_NAME"
+        #   name: "PRODUCT_CATEGORY_NAME"
+        #   definition: "Product category name"
+        #   description: "Denormalized from product_category table"
+        #   type: "STRING"
+        #   effective_timestamp: true
 
-        - id: "PRODUCT_MODEL_NAME"
-          name: "PRODUCT_MODEL_NAME"
-          definition: "Product model name"
-          description: "Denormalized from product_model table"
-          type: "STRING"
-          effective_timestamp: true
+        # - id: "PRODUCT_MODEL_NAME"
+        #   name: "PRODUCT_MODEL_NAME"
+        #   definition: "Product model name"
+        #   description: "Denormalized from product_model table"
+        #   type: "STRING"
+        #   effective_timestamp: true
 
         - id: "PRODUCT_SELL_START_DATE"
           name: "PRODUCT_SELL_START_DATE"
@@ -686,17 +686,17 @@ model:
       source_entity_id: "VENDOR"
       target_entity_id: "PERSON"
 
-    - name: "PERSON_RESIDES_AT_ADDRESS"
-      definition: "Links a person to their address"
-      description: "Each person has an address via business_entity_address"
-      source_entity_id: "PERSON"
-      target_entity_id: "ADDRESS"
+    # - name: "PERSON_RESIDES_AT_ADDRESS"
+    #   definition: "Links a person to their address"
+    #   description: "Each person has an address via business_entity_address"
+    #   source_entity_id: "PERSON"
+    #   target_entity_id: "ADDRESS"
 
-    - name: "EMPLOYEE_BELONGS_TO_DEPARTMENT"
-      definition: "Links an employee to their department"
-      description: "Each employee belongs to a department via employee_department_history"
-      source_entity_id: "EMPLOYEE"
-      target_entity_id: "DEPARTMENT"
+    # - name: "EMPLOYEE_BELONGS_TO_DEPARTMENT"
+    #   definition: "Links an employee to their department"
+    #   description: "Each employee belongs to a department via employee_department_history"
+    #   source_entity_id: "EMPLOYEE"
+    #   target_entity_id: "DEPARTMENT"
 
     - name: "WORK_ORDER_IS_FOR_PRODUCT"
       definition: "Links a work order to the product being manufactured"
@@ -728,12 +728,12 @@ model:
       source_entity_id: "SALES_ORDER"
       target_entity_id: "SALES_TERRITORY"
 
-    - name: "SALES_ORDER_IS_BILLED_TO_ADDRESS"
+    - name: "IS_BILLED_TO"
       definition: "Links a sales order to the billing address"
       source_entity_id: "SALES_ORDER"
       target_entity_id: "ADDRESS"
 
-    - name: "SALES_ORDER_IS_SHIPPED_TO_ADDRESS"
+    - name: "IS_SHIPPED_TO"
       definition: "Links a sales order to the shipping address"
       source_entity_id: "SALES_ORDER"
       target_entity_id: "ADDRESS"

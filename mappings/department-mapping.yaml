@@ -1,0 +1,23 @@
+entity_id: "DEPARTMENT"
+
+mapping_groups:
+  - name: "default_mapping_group"
+    allow_multiple_identifiers: false
+
+    tables:
+      - connection: "dev"
+        table: "das.aw__human_resources__department"
+
+        primary_keys:
+          - department_id
+
+        ingestion_strategy: FULL
+
+        entity_effective_timestamp_expression: "modified_date"
+
+        attributes:
+          - id: "DEPARTMENT_NAME"
+            transformation_expression: "name"
+
+          - id: "DEPARTMENT_GROUP_NAME"
+            transformation_expression: "group_name"

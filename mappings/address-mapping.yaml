@@ -1,0 +1,29 @@
+entity_id: "ADDRESS"
+
+mapping_groups:
+  - name: "default_mapping_group"
+    allow_multiple_identifiers: false
+
+    tables:
+      - connection: "dev"
+        table: "das.aw__person__address"
+
+        primary_keys:
+          - address_id
+
+        ingestion_strategy: FULL
+
+        entity_effective_timestamp_expression: "modified_date"
+
+        attributes:
+          - id: "ADDRESS_LINE_1"
+            transformation_expression: "address_line_1"
+
+          - id: "ADDRESS_LINE_2"
+            transformation_expression: "address_line_2"
+
+          - id: "ADDRESS_CITY"
+            transformation_expression: "city"
+
+          - id: "ADDRESS_POSTAL_CODE"
+            transformation_expression: "postal_code"

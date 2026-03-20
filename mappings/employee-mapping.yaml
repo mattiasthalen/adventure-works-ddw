@@ -1,0 +1,55 @@
+entity_id: "EMPLOYEE"
+
+mapping_groups:
+  - name: "default_mapping_group"
+    allow_multiple_identifiers: false
+
+    tables:
+      - connection: "dev"
+        table: "das.aw__human_resources__employee"
+
+        primary_keys:
+          - business_entity_id
+
+        ingestion_strategy: FULL
+
+        entity_effective_timestamp_expression: "modified_date"
+
+        attributes:
+          - id: "EMPLOYEE_NATIONAL_ID_NUMBER"
+            transformation_expression: "national_id_number"
+
+          - id: "EMPLOYEE_LOGIN_ID"
+            transformation_expression: "login_id"
+
+          - id: "EMPLOYEE_JOB_TITLE"
+            transformation_expression: "job_title"
+
+          - id: "EMPLOYEE_MARITAL_STATUS"
+            transformation_expression: "marital_status"
+
+          - id: "EMPLOYEE_GENDER"
+            transformation_expression: "gender"
+
+          - id: "EMPLOYEE_SALARIED_FLAG"
+            transformation_expression: "salaried_flag"
+
+          - id: "EMPLOYEE_VACATION_HOURS"
+            transformation_expression: "vacation_hours"
+
+          - id: "EMPLOYEE_SICK_LEAVE_HOURS"
+            transformation_expression: "sick_leave_hours"
+
+          - id: "EMPLOYEE_CURRENT_FLAG"
+            transformation_expression: "current_flag"
+
+          - id: "EMPLOYEE_BIRTH_DATE"
+            transformation_expression: "birth_date"
+
+          - id: "EMPLOYEE_HIRE_DATE"
+            transformation_expression: "hire_date"
+
+    relationships:
+      - id: "EMPLOYEE_EMPLOYEE_IS_A_PERSON_PERSON"
+        source_table: "das.aw__human_resources__employee"
+        target_transformation_expression: "business_entity_id"

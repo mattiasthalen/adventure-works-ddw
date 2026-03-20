@@ -1,0 +1,41 @@
+entity_id: "SPECIAL_OFFER"
+
+mapping_groups:
+  - name: "default_mapping_group"
+    allow_multiple_identifiers: false
+
+    tables:
+      - connection: "dev"
+        table: "das.aw__sales__special_offer"
+
+        primary_keys:
+          - special_offer_id
+
+        ingestion_strategy: FULL
+
+        entity_effective_timestamp_expression: "modified_date"
+
+        attributes:
+          - id: "SPECIAL_OFFER_DESCRIPTION"
+            transformation_expression: "description"
+
+          - id: "SPECIAL_OFFER_DISCOUNT_PCT"
+            transformation_expression: "discount_pct"
+
+          - id: "SPECIAL_OFFER_TYPE"
+            transformation_expression: "type"
+
+          - id: "SPECIAL_OFFER_CATEGORY"
+            transformation_expression: "category"
+
+          - id: "SPECIAL_OFFER_MIN_QTY"
+            transformation_expression: "min_qty"
+
+          - id: "SPECIAL_OFFER_MAX_QTY"
+            transformation_expression: "max_qty"
+
+          - id: "SPECIAL_OFFER_START_DATE"
+            transformation_expression: "start_date"
+
+          - id: "SPECIAL_OFFER_END_DATE"
+            transformation_expression: "end_date"
